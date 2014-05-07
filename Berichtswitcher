@@ -1,0 +1,30 @@
+// ==UserScript==
+// @name          	Berichtenswitcher
+// @version      	1.0
+// @author	    	Victoria_Justice<Victoria__Justice@outlook.com>
+// @description		Go easier through reports
+// @include       	http://*.kingsage.gameforge.com/game.php*
+// ==/UserScript==
+
+(function (f) {
+    var d = document,
+        s = d.createElement('script');
+    s.textContent = '$(' + f + ")";
+    (d.body || d.head || d.documentElement).appendChild(s);
+    s.parentNode.removeChild(s)
+})(function () {
+	urlParam = function (name) {
+		return decodeURIComponent((new RegExp('[?|&]' + name + '=([^&;]+?)(&|#|;|$)').exec(location.search) || [, ""])[1].replace(/\+/g, '%20')) || null;
+	};
+		$(document).keydown(function (e) {
+			switch (e.which) {
+				case 37: 
+					location.href = $('a:contains("<<")').attr('href');
+					break;
+				case 39: 
+					location.href = $('a:contains(">>")').attr('href');
+					break;
+			}
+		});
+	}
+});
